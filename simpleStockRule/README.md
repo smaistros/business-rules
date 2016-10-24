@@ -4,8 +4,8 @@ Simple rule scenario and test.
 
 Stock has id, price and tradingSignal.
 
-- First rule says tha "If stock price is less than 100 trading signal is set to BUY"
-- Second rule says tha "If stock price is more than 100 trading signal is set to SELL"
+- First rule says that "If stock price is less than 100 trading signal is set to BUY"
+- Second rule says that "If stock price is more than 100 trading signal is set to SELL"
 
 
 # Environment
