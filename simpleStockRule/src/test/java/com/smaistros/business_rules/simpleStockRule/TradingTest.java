@@ -2,6 +2,8 @@ package com.smaistros.business_rules.simpleStockRule;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.kie.api.KieBase;
 import org.kie.api.KieServices;
@@ -19,8 +21,11 @@ import com.smaistros.business_rules.simpleStockRule.TradingSignal;
 public class TradingTest {
 	static final Logger LOG = LoggerFactory.getLogger(TradingTest.class);
 
-	@Test
-	public void test() {
+	private KieSession session;
+	
+	@Before
+	public void setup(){
+		LOG.info("Setup resources");
 		KieServices kieServices = KieServices.Factory.get();
 
 		KieContainer kContainer = kieServices.getKieClasspathContainer();
@@ -32,7 +37,7 @@ public class TradingTest {
 		LOG.info("Creating kieBase");
 		KieBase kieBase = kContainer.getKieBase();
 
-		LOG.info("There should be rules: ");
+		LOG.info("Rules are: ");
 		for (KiePackage kp : kieBase.getKiePackages()) {
 			for (Rule rule : kp.getRules()) {
 				LOG.info("kp " + kp + " rule " + rule.getName());
@@ -40,9 +45,12 @@ public class TradingTest {
 		}
 
 		LOG.info("Creating kieSession");
-		KieSession session = kieBase.newKieSession();
-
-		LOG.info("Now running data");
+		session = kieBase.newKieSession();		
+	}
+	
+	@Test
+	public void testPriceLessThan100() {
+		LOG.info("Running testPriceLessThan100");
 
 		Stock googleStock = new Stock("google", 99);
 		session.insert(googleStock);
@@ -52,4 +60,39 @@ public class TradingTest {
 
 		assertTrue("Stock google has trade signal BUY", googleStock.getTradingSignal() == TradingSignal.BUY);
 	}
+
+	@Test
+	public void testPriceEquals100() {
+		LOG.info("Running testPriceEquals100");
+
+		Stock oneHStock = new Stock("oneH stock", 100);
+		session.insert(oneHStock);
+		session.fireAllRules();
+
+		LOG.info("Final checks");
+
+		assertTrue("oneH has trade signal NULL", oneHStock.getTradingSignal() == null);
+	}
+	
+	
+	@Test
+	public void testPriceMoreThan100() {
+		LOG.info("Running testPriceMoreThan100");
+
+		Stock appleStock = new Stock("apple", 101);
+		session.insert(appleStock);
+		session.fireAllRules();
+
+		LOG.info("Final checks");
+
+		assertTrue("Stock apple has trade signal SELL", appleStock.getTradingSignal() == TradingSignal.SELL);
+	}	
+	
+	@After
+	public void cleanup() {
+		if ( session != null) {
+			session.dispose();
+		}
+	}
+	
 }

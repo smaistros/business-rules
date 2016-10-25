@@ -12,7 +12,7 @@ rule "if stock price less than 100 signal buy"
         $stock: Stock( )        
     then
         //actions
-        System.out.println("Price of "+$stock.getId()+" less than 100.");
+        //System.out.println("Price of "+$stock.getId()+" less than 100.");
         $stock.setTradingSignal(TradingSignal.BUY);
 end
 
@@ -23,6 +23,6 @@ rule "if stock price more than 100 signal sell"
         $stock: Stock( )        
     then
         //actions
-        System.out.println("Price of "+$stock.getId()+" more than 100.");
+        //System.out.println("Price of "+$stock.getId()+" more than 100.");
         $stock.setTradingSignal(TradingSignal.SELL);
 end
