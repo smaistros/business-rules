@@ -21,14 +21,17 @@ JBoss Developer Studio
 - *optional:* At JBDS "Windows">"Preferences">"Installed Drools Runtime" setup to "jboss-bpmsuite-6.3-engine". Runtime engine is downloaded separately at any location and is linked here.
 
 # Maven
-- Archetype "https://mvnrepository.com/artifact/org.kie/kie-drools-archetype 6.4.0 final" has been used, pomEclipseCompatible set to TRUE.
+- For model project *tradeStockModel* no archetype has been used
+- For rules project *tradeStockRules* archetype [kie-drools-archetype](https://mvnrepository.com/artifact/org.kie/kie-drools-archetype "kie-drools-archetype") v.6.4.0 Final has been used, with *pomEclipseCompatible* set to *TRUE*.
+
+
 
 # Run example
 
 ```bash
 git clone https://github.com/smaistros/business-rules.git .
 cd tradeStock/tradeStockModel
-mvn clean verify build
+mvn clean verify install
 cd ../tradeStockRules
 mvn clean verify test
 ```

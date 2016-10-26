@@ -7,4 +7,4 @@ Simple rule scenario with JUnit test in one project.
 
 ### 2. tradeStock
 
-Same as "simpleStockRule" but separated in two projects, one for fact model and one for rules.
+Same as *1. simpleStockRule* but separated in two projects, one for fact model and one for rules.
