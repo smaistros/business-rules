@@ -1,6 +1,6 @@
 # Scenario
 
-Simple rule scenario and tests all in one project
+Simple rule scenario and tests using two projects. One for fact model and one for rules
 
 ### Facts
 - The fact is *Stock* having an *id*, *price* and *tradingSignal*
@@ -21,12 +21,14 @@ JBoss Developer Studio
 - *optional:* At JBDS "Windows">"Preferences">"Installed Drools Runtime" setup to "jboss-bpmsuite-6.3-engine". Runtime engine is downloaded separately at any location and is linked here.
 
 # Maven
-- Archetype [kie-drools-archetype](https://mvnrepository.com/artifact/org.kie/kie-drools-archetype "kie-drools-archetype") v.6.4.0 Final has been used with *pomEclipseCompatible* set to *TRUE*.
+- Archetype "https://mvnrepository.com/artifact/org.kie/kie-drools-archetype 6.4.0 final" has been used, pomEclipseCompatible set to TRUE.
 
 # Run example
 
 ```bash
 git clone https://github.com/smaistros/business-rules.git .
-cd simpleStockRule
+cd tradeStock/tradeStockModel
+mvn clean verify build
+cd ../tradeStockRules
 mvn clean verify test
 ```

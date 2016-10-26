@@ -1,0 +1,29 @@
+package com.smaistros.business_rules.tradeStockRules;
+
+//list any import classes here.
+import com.smaistros.business_rules.tradeStockModel.TradingSignal;
+import com.smaistros.business_rules.tradeStockModel.Stock;
+
+//declare any global variables here
+
+rule "if stock price less than 100 signal buy"
+    when
+        //conditions
+        Stock( price < 100 )
+        $stock: Stock( )        
+    then
+        //actions
+        //System.out.println("Price of "+$stock.getId()+" less than 100.");
+        $stock.setTradingSignal(TradingSignal.BUY);
+end
+
+rule "if stock price more than 100 signal sell"
+    when
+        //conditions
+        Stock( price > 100 )
+        $stock: Stock( )        
+    then
+        //actions
+        //System.out.println("Price of "+$stock.getId()+" more than 100.");
+        $stock.setTradingSignal(TradingSignal.SELL);
+end
