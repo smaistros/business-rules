@@ -20,7 +20,7 @@ JBoss Developer Studio
 - version 9.1.0 with integration stacked installed
 - *optional:* At JBDS "Windows">"Preferences">"Installed Drools Runtime" setup to "jboss-bpmsuite-6.3-engine". Runtime engine is downloaded separately at any location and is linked here.
 
-# Maven
+# Maven project
 - Archetype [kie-drools-archetype](https://mvnrepository.com/artifact/org.kie/kie-drools-archetype "kie-drools-archetype") v.6.4.0 Final has been used with *pomEclipseCompatible* set to *TRUE*.
 
 # Run example
